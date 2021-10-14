@@ -41,6 +41,7 @@ export function Home() {
   const [cardFrom, setCardFrom] = useState(() => cardInfo.cardFrom);
   const [cardDate, setCardDate] = useState(() => cardInfo.cardDate);
   const [message, setMessage] = useState(() => cardInfo.message);
+  const [isCardOwner, setIsCardOwner] = useState(false);
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const storeValues = {
@@ -49,12 +50,14 @@ export function Home() {
     cardFrom,
     cardDate,
     message,
+    isCardOwner,
     isCardOpen,
     isModalOpen,
     setCover,
     setCardTo,
     setCardFrom,
     setMessage,
+    setIsCardOwner,
     setIsCardOpen,
     setIsModalOpen,
   };

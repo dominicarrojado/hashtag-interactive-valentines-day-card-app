@@ -81,7 +81,7 @@ function CardInfo() {
           theme={context.cover.name}
           onClick={createOnClick}
         >
-          Create another one
+          {context.isCardOwner ? 'Create another one' : 'Create your own'}
         </Button>
       </div>
       <div className={styles.shareContainer}>

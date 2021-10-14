@@ -72,6 +72,7 @@ function CardForm() {
       return setHasError(true);
     }
 
+    context.setIsCardOwner(true);
     context.setIsCardOpen(true);
 
     const id = serializeObject({

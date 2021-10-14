@@ -1,4 +1,7 @@
 .cardInfo {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   padding: 40px 30px 90px;
 }
 
@@ -31,7 +34,8 @@
 }
 
 .cardBtn {
-  margin-top: 60px;
+  margin-top: auto;
+  padding-top: 60px;
   text-align: center;
 }
 
