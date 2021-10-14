@@ -95,7 +95,7 @@ function CardInfo() {
             aria-label="Share to Facebook"
           >
             <img
-              src={getAssetUrl('/images/icon-facebook.png')}
+              src={getAssetUrl('images/icon-facebook.png')}
               alt="Facebook icon"
               className={styles.shareBtnImg}
             />
@@ -108,7 +108,7 @@ function CardInfo() {
             aria-label="Share to Twitter"
           >
             <img
-              src={getAssetUrl('/images/icon-twitter.png')}
+              src={getAssetUrl('images/icon-twitter.png')}
               alt="Twitter icon"
               className={styles.shareBtnImg}
             />
@@ -120,7 +120,7 @@ function CardInfo() {
             aria-label="Copy link"
           >
             <img
-              src={getAssetUrl('/images/icon-link.png')}
+              src={getAssetUrl('images/icon-link.png')}
               alt="Link icon"
               className={styles.shareBtnImg}
             />

@@ -168,7 +168,7 @@ function CardForm() {
             onClick={openModal}
           >
             <img
-              src={getAssetUrl('/images/icon-circle-question.png')}
+              src={getAssetUrl('images/icon-circle-question.png')}
               alt="question mark icon"
               className={styles.formIconImg}
             />

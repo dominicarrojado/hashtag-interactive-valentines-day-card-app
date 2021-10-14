@@ -17,32 +17,32 @@ export const COVER_NAMES = Object.values(CoverName);
 export const COVERS = [
   {
     name: CoverName.TEAL,
-    gif: getAssetUrl('/images/cover-teal-cat.gif'),
-    image: getAssetUrl('/images/cover-teal-cat-mini.png'),
+    gif: getAssetUrl('images/cover-teal-cat.gif'),
+    image: getAssetUrl('images/cover-teal-cat-mini.png'),
     imageAlt: 'card cover with a cat and teal background',
   },
   {
     name: CoverName.RED,
-    gif: getAssetUrl('/images/cover-red-cupcake.gif'),
-    image: getAssetUrl('/images/cover-red-cupcake-mini.png'),
+    gif: getAssetUrl('images/cover-red-cupcake.gif'),
+    image: getAssetUrl('images/cover-red-cupcake-mini.png'),
     imageAlt: 'card cover with a cupecake and red background',
   },
   {
     name: CoverName.PINK,
-    gif: getAssetUrl('/images/cover-pink-rose.gif'),
-    image: getAssetUrl('/images/cover-pink-rose-mini.png'),
+    gif: getAssetUrl('images/cover-pink-rose.gif'),
+    image: getAssetUrl('images/cover-pink-rose-mini.png'),
     imageAlt: 'card cover with a rose and pink background',
   },
   {
     name: CoverName.BLACK,
-    gif: getAssetUrl('/images/cover-black-gift.gif'),
-    image: getAssetUrl('/images/cover-black-gift-mini.png'),
+    gif: getAssetUrl('images/cover-black-gift.gif'),
+    image: getAssetUrl('images/cover-black-gift-mini.png'),
     imageAlt: 'card cover with a giftbox and black background',
   },
   {
     name: CoverName.PURPLE,
-    gif: getAssetUrl('/images/cover-purple-pineapple.gif'),
-    image: getAssetUrl('/images/cover-purple-pineapple-mini.png'),
+    gif: getAssetUrl('images/cover-purple-pineapple.gif'),
+    image: getAssetUrl('images/cover-purple-pineapple-mini.png'),
     imageAlt: 'card cover with a pineapple and purple background',
   },
 ];

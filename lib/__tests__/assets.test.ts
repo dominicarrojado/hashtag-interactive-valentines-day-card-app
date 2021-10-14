@@ -23,7 +23,7 @@ describe('assets utilities', () => {
       const path = getFakeDirectoryPath();
       const url = getAssetUrl(path);
 
-      expect(url).toBe(path);
+      expect(url).toBe(`/${path}`);
     });
 
     it('should return full url on production env', () => {
