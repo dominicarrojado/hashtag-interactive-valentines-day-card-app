@@ -58,8 +58,8 @@
   position: absolute;
   top: 7px;
   right: 10px;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border: none;
   background-color: transparent;
   padding: 0;
@@ -117,8 +117,8 @@
   .modalCloseBtn {
     top: 15px;
     right: 15px;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     font-size: 45px;
   }
 }
