@@ -9,6 +9,9 @@ export const MAIN_DESC =
 export const MAIN_ORIGIN = 'https://dominicarrojado.com';
 export const MAIN_PATH = '/hashtag-interactive-christmas-game/';
 export const MAIN_URL = `${MAIN_ORIGIN}${MAIN_PATH}`;
+export const META_IMAGE = `${MAIN_URL}images/screenshot.png`;
+export const META_IMAGE_WIDTH = 1052;
+export const META_IMAGE_HEIGHT = 550;
 
 export const COVER_NAMES = Object.values(CoverName);
 export const COVERS = [
