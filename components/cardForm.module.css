@@ -1,0 +1,145 @@
+.cardCoverContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 150px;
+}
+
+.cardCoverImg {
+  display: none;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  background-color: transparent;
+  user-select: none;
+}
+
+.cardCoverImg.cardCoverImgActive {
+  display: block;
+}
+
+.cardForm {
+  padding: 40px 30px;
+}
+
+.coverLabel {
+  color: var(--gray);
+  font-size: 18px;
+  user-select: none;
+}
+
+.coverRadios {
+  display: flex;
+  flex-flow: wrap;
+  margin-top: 5px;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.date {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+
+.formGroup {
+  position: relative;
+  margin-top: 15px;
+}
+
+.formIconBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+  width: 22px;
+  height: 22px;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.1s linear;
+  user-select: none;
+}
+
+.formIconBtn:hover {
+  opacity: 0.8;
+}
+
+.formIconBtn:active {
+  opacity: 1;
+}
+
+.formIconImg {
+  width: 100%;
+  height: 100%;
+}
+
+.formBtn {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.note {
+  margin-top: 15px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.error {
+  margin-top: 30px;
+  font-size: 18px;
+  color: var(--red);
+  text-align: center;
+}
+
+@media screen and (min-width: 640px) {
+  .cardCoverContainer {
+    height: 200px;
+  }
+
+  .coverRadiosContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .coverRadios {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cardCoverContainer {
+    height: 250px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .cardCoverContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+  }
+
+  .cardForm {
+    width: 50%;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .formGroup {
+    margin-top: 20px;
+  }
+
+  .formBtn {
+    margin-top: 40px;
+  }
+}

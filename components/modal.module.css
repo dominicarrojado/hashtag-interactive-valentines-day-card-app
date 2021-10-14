@@ -1,0 +1,124 @@
+.modalOpen {
+  overflow: hidden;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  outline: 0;
+  z-index: 1050;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modalDialog {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: calc(100% - (15px * 2));
+  margin: 15px;
+  pointer-events: none;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  pointer-events: auto;
+  background-color: var(--white);
+  border: 1px solid var(--gray-100);
+  outline: 0;
+  overflow: hidden;
+}
+
+.modalHeader {
+  position: relative;
+  flex-shrink: 0;
+  padding: 40px 15px 15px;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: var(--black);
+  font-size: 35px;
+  line-height: 1;
+  user-select: none;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.modalCloseBtn:hover {
+  opacity: 0.6;
+}
+
+.modalCloseBtn:active {
+  opacity: 0.9;
+}
+
+.modalBody {
+  flex: 1 1 auto;
+  padding: 15px 15px 40px;
+  overflow-y: auto;
+}
+
+.modalBackdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--black);
+  opacity: 0.5;
+  z-index: 1040;
+}
+
+.modalBackdrop.show {
+  display: block;
+}
+
+@media screen and (min-width: 1024px) {
+  .modalDialog {
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .modalHeader,
+  .modalBody {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .modalCloseBtn {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 45px;
+  }
+}

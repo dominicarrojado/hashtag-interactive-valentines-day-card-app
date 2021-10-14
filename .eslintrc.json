@@ -1,6 +1,7 @@
 {
   "extends": ["next", "next/core-web-vitals", "prettier"],
   "rules": {
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }] // allow single quotes
   }
 }

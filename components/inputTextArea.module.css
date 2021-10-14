@@ -1,0 +1,28 @@
+.inputContainer {
+  display: flex;
+  width: 100%;
+}
+
+.inputText {
+  flex: 1;
+  display: block;
+  width: 100%;
+  min-height: 170px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: var(--gray-100);
+  color: var(--black);
+  padding: 15px 15px 45px;
+  font-size: 18px;
+  resize: none;
+}
+
+.inputText:focus {
+  background-color: var(--gray-200);
+}
+
+.inputText::placeholder {
+  color: var(--gray);
+  user-select: none;
+}

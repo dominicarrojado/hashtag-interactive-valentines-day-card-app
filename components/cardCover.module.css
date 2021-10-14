@@ -1,0 +1,51 @@
+.cardCoverContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform: translateX(0);
+  transition: transform 1s ease;
+  z-index: 1;
+}
+
+.cardCoverContainer.cardOpen {
+  transform: translateX(-100%);
+}
+
+.cardCoverImg {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.cardToggleBtn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media screen and (min-width: 1024px) {
+  .cardCoverContainer {
+    transition: width 1s ease;
+  }
+
+  .cardCoverContainer.cardOpen {
+    width: 50%;
+    transform: translateX(0);
+  }
+}

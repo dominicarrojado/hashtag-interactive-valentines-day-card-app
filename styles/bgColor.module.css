@@ -1,0 +1,79 @@
+.teal {
+  background-color: var(--teal);
+}
+
+.red {
+  background-color: var(--red);
+}
+
+.pink {
+  background-color: var(--pink);
+}
+
+.black {
+  background-color: var(--black);
+}
+
+.purple {
+  background-color: var(--purple);
+}
+
+.btnPink {
+  background-color: var(--pink-100);
+}
+
+.btnPink:hover {
+  background-color: var(--pink-200);
+}
+
+.btnPink:active {
+  background-color: var(--pink-300);
+}
+
+.btnTeal {
+  background-color: var(--teal-100);
+}
+
+.btnTeal:hover {
+  background-color: var(--teal-200);
+}
+
+.btnTeal:active {
+  background-color: var(--teal-300);
+}
+
+.btnPinkDark {
+  background-color: var(--pink-400);
+}
+
+.btnPinkDark:hover {
+  background-color: var(--pink-500);
+}
+
+.btnPinkDark:active {
+  background-color: var(--pink-600);
+}
+
+.btnGold {
+  background-color: var(--gold-100);
+}
+
+.btnGold:hover {
+  background-color: var(--gold-200);
+}
+
+.btnGold:active {
+  background-color: var(--gold-300);
+}
+
+.btnGreen {
+  background-color: var(--green-100);
+}
+
+.btnGreen:hover {
+  background-color: var(--green-200);
+}
+
+.btnGreen:active {
+  background-color: var(--green-300);
+}

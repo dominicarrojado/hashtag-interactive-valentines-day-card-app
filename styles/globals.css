@@ -1,6 +1,58 @@
+/*--------------------------------------------------------------
+Gotham Book
+--------------------------------------------------------------*/
+@font-face {
+  font-family: 'Gotham Book';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/GothamBook-Regular.otf') format('opentype');
+  font-display: swap;
+}
+/*--------------------------------------------------------------
+End Gotham Book
+--------------------------------------------------------------*/
+
+:root {
+  --white: #ffffff;
+  --gray: #aaaaaa;
+  --gray-100: #f2f2f2;
+  --gray-200: #e8e8e8;
+  --gray-300: #eaeaea;
+  --gray-400: #c3c3c3;
+  --teal: #a6d7cf;
+  --teal-100: #67c9d3;
+  --teal-200: #53c2cd;
+  --teal-300: #3fbbc8;
+  --red: #c63736;
+  --black: #282828;
+  --pink: #f5c3bf;
+  --pink-100: #f387a2;
+  --pink-200: #f17090;
+  --pink-300: #ee597e;
+  --pink-400: #e9737f;
+  --pink-500: #e65d6b;
+  --pink-600: #e24757;
+  --purple: #db508e;
+  --gold-100: #d28629;
+  --gold-200: #bd7825;
+  --gold-300: #a76b21;
+  --green-100: #62ad7a;
+  --green-200: #54a16d;
+  --green-300: #4b9162;
+}
+
 * {
-  font-family: 'Arial', serif;
+  font-family: 'Gotham Book', serif;
+  line-height: 1.6;
   box-sizing: border-box;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+body > div:first-child {
+  height: 100%;
+}
+
+body {
+  color: var(--black);
 }

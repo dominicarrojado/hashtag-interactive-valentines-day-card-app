@@ -1,0 +1,37 @@
+.inputContainer {
+  display: flex;
+  width: 100%;
+}
+
+.inputLabel {
+  flex-shrink: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: var(--gray-100);
+  padding: 15px;
+  color: var(--gray);
+  font-size: 18px;
+  user-select: none;
+}
+
+.inputText {
+  flex: 1;
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: var(--gray-100);
+  color: var(--black);
+  padding: 15px;
+  font-size: 18px;
+}
+
+.inputLabel + .inputText {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.inputText:focus {
+  background-color: var(--gray-200);
+}

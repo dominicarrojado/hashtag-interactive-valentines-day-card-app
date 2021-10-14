@@ -1,0 +1,85 @@
+.cardInfo {
+  padding: 40px 30px 90px;
+}
+
+.date {
+  font-size: 18px;
+}
+
+.infoGroup {
+  position: relative;
+  display: flex;
+  margin-top: 30px;
+}
+
+.infoLabel {
+  flex-shrink: 0;
+  margin-right: 5px;
+  color: var(--gray);
+  font-size: 18px;
+  user-select: none;
+}
+
+.infoValue {
+  flex: 1;
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  word-break: break-word;
+}
+
+.cardBtn {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.shareContainer {
+  margin-top: 30px;
+}
+
+.shareTitle {
+  text-align: center;
+  font-size: 18px;
+}
+
+.shareBtns {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.shareBtn {
+  position: relative;
+  display: inline-flex;
+  outline: none;
+  border: none;
+  margin: 7px;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.shareBtn:active {
+  background-color: var(--black);
+}
+
+.shareBtnImg {
+  width: 70px;
+  height: 65px;
+}
+
+.shareBtn:hover > .shareBtnImg {
+  opacity: 0.9;
+}
+
+@media screen and (min-width: 1024px) {
+  .cardInfo {
+    width: 50%;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}

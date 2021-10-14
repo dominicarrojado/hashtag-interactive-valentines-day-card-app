@@ -14,17 +14,23 @@
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
+    "autosize": "^5.0.1",
+    "classnames": "^2.3.1",
     "next": "11.1.2",
     "normalize.css": "^8.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "underscore": "^1.13.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
+    "@types/autosize": "^4.0.0",
     "@types/faker": "^5.5.8",
     "@types/jest": "^27.0.2",
     "@types/react": "17.0.27",
+    "@types/react-dom": "^17.0.9",
+    "@types/underscore": "^1.11.3",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",

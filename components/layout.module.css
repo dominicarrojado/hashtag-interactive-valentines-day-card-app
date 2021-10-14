@@ -1,0 +1,10 @@
+.layout {
+  min-height: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .layout {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
