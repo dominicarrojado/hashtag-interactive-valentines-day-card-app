@@ -33,6 +33,7 @@
   outline: none;
   border: none;
   border-radius: 50%;
+  padding: 0;
   color: var(--white);
   font-size: 15px;
   cursor: pointer;
