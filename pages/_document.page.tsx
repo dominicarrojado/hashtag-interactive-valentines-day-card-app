@@ -5,7 +5,6 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import { getAssetUrl } from '../lib/assets';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -17,12 +16,15 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            rel="preload"
-            href={getAssetUrl('/fonts/GothamBook-Regular.otf')}
-            as="font"
-            type="font/otf"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
             crossOrigin="anonymous"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>

@@ -1,17 +1,3 @@
-/*--------------------------------------------------------------
-Gotham Book
---------------------------------------------------------------*/
-@font-face {
-  font-family: 'Gotham Book';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/GothamBook-Regular.otf') format('opentype');
-  font-display: swap;
-}
-/*--------------------------------------------------------------
-End Gotham Book
---------------------------------------------------------------*/
-
 :root {
   --white: #ffffff;
   --gray: #aaaaaa;
@@ -42,9 +28,12 @@ End Gotham Book
 }
 
 * {
-  font-family: 'Gotham Book', serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
+  letter-spacing: 0.05rem;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html,
