@@ -7,7 +7,7 @@ export const MAIN_TITLE = `${PROJECT_TITLE} - ${MAIN_AUTHOR}`;
 export const MAIN_DESC =
   "Tug at your special someone's heartstrings by making a cute e-card just for them.";
 export const MAIN_ORIGIN = 'https://dominicarrojado.com';
-export const MAIN_PATH = '/hashtag-interactive-christmas-game/';
+export const MAIN_PATH = '/hashtag-interactive-valentines-day-card-app/';
 export const MAIN_URL = `${MAIN_ORIGIN}${MAIN_PATH}`;
 export const META_IMAGE = `${MAIN_URL}images/screenshot.png`;
 export const META_IMAGE_WIDTH = 1052;
