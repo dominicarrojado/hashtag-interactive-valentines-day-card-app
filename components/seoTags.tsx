@@ -14,10 +14,7 @@ function SeoTags() {
   return (
     <Head>
       <meta charSet="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1, maximum-scale=1"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="theme-color" content="#000000" />
       <meta name="description" content={MAIN_DESC} />
       <meta name="author" content={MAIN_AUTHOR} />
