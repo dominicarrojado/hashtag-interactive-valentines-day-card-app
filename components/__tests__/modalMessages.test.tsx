@@ -1,8 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { getFakeBoolean, queryByTextIgnoreHTML } from '../../lib/test-helpers';
 import { StoreContext } from '../../lib/store';
-import { TEMPLATE_MESSAGES } from '../../lib/constants';
+import { GoogleAnalyticsEvents } from '../../lib/types';
+import { PROJECT_TITLE, TEMPLATE_MESSAGES } from '../../lib/constants';
 import * as message from '../../lib/message';
+import * as ga from '../../lib/google-analytics';
 import ModalMessages from '../modalMessages';
 
 describe('<ModalMessages />', () => {
@@ -83,6 +85,42 @@ describe('<ModalMessages />', () => {
 
       setMessageMock.mockClear();
       setIsModalOpenMock.mockClear();
+    });
+  });
+
+  it('should track message select', () => {
+    jest.spyOn(message, 'parseMessage').mockImplementation((value) => value);
+
+    const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+    const store = {
+      isModalOpen: false,
+      setMessage: jest.fn(),
+      setIsModalOpen: jest.fn(),
+    } as any;
+
+    render(
+      <StoreContext.Provider value={store}>
+        <ModalMessages />
+      </StoreContext.Provider>
+    );
+
+    TEMPLATE_MESSAGES.forEach((message) => {
+      const messageBtnEl = queryByTextIgnoreHTML(
+        screen,
+        message
+      ) as HTMLButtonElement;
+
+      fireEvent.click(messageBtnEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.CARD_TEMPLATE_MESSAGE_CLICK,
+        projectTitle: PROJECT_TITLE,
+        buttonText: message,
+      });
+
+      trackEventSpy.mockClear();
     });
   });
 

@@ -15,12 +15,15 @@ import {
 } from '../../lib/share';
 import { getFormattedDate, getInputDate } from '../../lib/date';
 import { StoreContext } from '../../lib/store';
+import { GoogleAnalyticsEvents, SocialName } from '../../lib/types';
 import {
   CARD_INFO_PRE_MESSAGE,
   MAIN_TITLE,
+  PROJECT_TITLE,
   TEXT_COPIED_TIMEOUT,
 } from '../../lib/constants';
 import * as dom from '../../lib/dom';
+import * as ga from '../../lib/google-analytics';
 import CardInfo from '../cardInfo';
 
 jest.useFakeTimers();
@@ -85,7 +88,7 @@ describe('<CardInfo />', () => {
     });
 
     it('should render share to facebook anchor', () => {
-      const anchorEl = screen.queryByLabelText('Share to Facebook');
+      const anchorEl = screen.queryByTitle('Share to Facebook');
 
       expect(anchorEl?.tagName).toBe('A');
       expect(anchorEl).toHaveAttribute(
@@ -96,8 +99,26 @@ describe('<CardInfo />', () => {
       expect(anchorEl).toHaveAttribute('rel', 'noopener noreferrer nofollow');
     });
 
+    it('should track share to facebook', () => {
+      const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+      const anchorText = 'Share to Facebook';
+      const anchorEl = screen.queryByTitle(anchorText) as HTMLAnchorElement;
+
+      fireEvent.click(anchorEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.CARD_SHARE,
+        projectTitle: PROJECT_TITLE,
+        socialName: SocialName.FACEBOOK,
+        linkText: anchorText,
+        cardCover: store.cover.name,
+      });
+    });
+
     it('should render share to twitter anchor', () => {
-      const anchorEl = screen.queryByLabelText('Share to Twitter');
+      const anchorEl = screen.queryByTitle('Share to Twitter');
 
       expect(anchorEl?.tagName).toBe('A');
       expect(anchorEl).toHaveAttribute(
@@ -107,30 +128,27 @@ describe('<CardInfo />', () => {
       expect(anchorEl).toHaveAttribute('target', '_blank');
       expect(anchorEl).toHaveAttribute('rel', 'noopener noreferrer nofollow');
     });
+
+    it('should track share to twitter', () => {
+      const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+      const anchorText = 'Share to Twitter';
+      const anchorEl = screen.queryByTitle(anchorText) as HTMLAnchorElement;
+
+      fireEvent.click(anchorEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.CARD_SHARE,
+        projectTitle: PROJECT_TITLE,
+        socialName: SocialName.TWITTER,
+        linkText: anchorText,
+        cardCover: store.cover.name,
+      });
+    });
   });
 
   describe('create button', () => {
-    it('should reset route on create click', () => {
-      const routerPushMock = jest.fn();
-
-      jest.spyOn(router, 'useRouter').mockReturnValue({
-        push: routerPushMock,
-      } as any);
-
-      render(
-        <StoreContext.Provider value={store}>
-          <CardInfo />
-        </StoreContext.Provider>
-      );
-
-      const btnEl = screen.queryAllByRole('button')[0] as HTMLButtonElement;
-
-      fireEvent.click(btnEl);
-
-      expect(routerPushMock).toBeCalledTimes(1);
-      expect(routerPushMock).toBeCalledWith('/');
-    });
-
     it('should have expected button text if owner', () => {
       store.isCardOwner = true;
 
@@ -157,6 +175,52 @@ describe('<CardInfo />', () => {
       const btnEl = screen.queryAllByRole('button')[0] as HTMLButtonElement;
 
       expect(btnEl).toHaveTextContent('Create your own');
+    });
+
+    it('should reset route on create click', () => {
+      const routerPushMock = jest.fn();
+
+      jest.spyOn(router, 'useRouter').mockReturnValue({
+        push: routerPushMock,
+      } as any);
+
+      render(
+        <StoreContext.Provider value={store}>
+          <CardInfo />
+        </StoreContext.Provider>
+      );
+
+      const btnEl = screen.queryAllByRole('button')[0] as HTMLButtonElement;
+
+      fireEvent.click(btnEl);
+
+      expect(routerPushMock).toBeCalledTimes(1);
+      expect(routerPushMock).toBeCalledWith('/');
+    });
+
+    it('should track create click', () => {
+      jest.spyOn(router, 'useRouter').mockReturnValue({
+        push: jest.fn(),
+      } as any);
+
+      const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+      render(
+        <StoreContext.Provider value={store}>
+          <CardInfo />
+        </StoreContext.Provider>
+      );
+
+      const btnEl = screen.queryAllByRole('button')[0] as HTMLButtonElement;
+
+      fireEvent.click(btnEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.CARD_RECREATE,
+        projectTitle: PROJECT_TITLE,
+        cardCover: store.cover.name,
+      });
     });
   });
 
@@ -188,7 +252,7 @@ describe('<CardInfo />', () => {
         </StoreContext.Provider>
       );
 
-      const btnEl = screen.queryByLabelText('Copy link') as HTMLButtonElement;
+      const btnEl = screen.queryByTitle('Copy link') as HTMLButtonElement;
 
       fireEvent.click(btnEl);
 
@@ -220,7 +284,7 @@ describe('<CardInfo />', () => {
 
       expect(copiedEl).not.toBeInTheDocument();
 
-      const btnEl = screen.queryByLabelText('Copy link') as HTMLButtonElement;
+      const btnEl = screen.queryByTitle('Copy link') as HTMLButtonElement;
 
       fireEvent.click(btnEl);
 
@@ -249,13 +313,43 @@ describe('<CardInfo />', () => {
         </StoreContext.Provider>
       );
 
-      const btnEl = screen.queryByLabelText('Copy link') as HTMLButtonElement;
+      const btnEl = screen.queryByTitle('Copy link') as HTMLButtonElement;
 
       fireEvent.click(btnEl);
 
       const copiedEl = screen.queryByText('Copied!');
 
       expect(copiedEl).not.toBeInTheDocument();
+    });
+
+    it('should track copy text', () => {
+      const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+      // randomize from 3 cases above
+      jest.spyOn(dom, 'checkIsTouchScreen').mockReturnValue(getFakeBoolean());
+      navigator.clipboard.writeText = (
+        getFakeBoolean() ? jest.fn() : undefined
+      ) as any;
+      console.error = jest.fn();
+
+      render(
+        <StoreContext.Provider value={store}>
+          <CardInfo />
+        </StoreContext.Provider>
+      );
+
+      const btnText = 'Copy link';
+      const btnEl = screen.queryByTitle(btnText) as HTMLButtonElement;
+
+      fireEvent.click(btnEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.CARD_LINK_COPY,
+        projectTitle: PROJECT_TITLE,
+        buttonText: btnText,
+        cardCover: store.cover.name,
+      });
     });
   });
 });

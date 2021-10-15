@@ -13,6 +13,20 @@ export enum FormName {
   MESSAGE = 'message',
 }
 
+export enum SocialName {
+  FACEBOOK = 'facebook',
+  TWITTER = 'twitter',
+}
+
+export enum GoogleAnalyticsEvents {
+  CARD_CREATE = 'card_create',
+  CARD_RECREATE = 'card_recreate',
+  CARD_SHARE = 'card_share',
+  CARD_LINK_COPY = 'card_link_copy',
+  CARD_TEMPLATE_MESSAGE_CLICK = 'card_template_msg_click',
+  MODAL_OPEN = 'modal_open',
+}
+
 export type Nullish<T> = T | null | undefined;
 
 export type Cover = {

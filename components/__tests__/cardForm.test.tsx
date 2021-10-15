@@ -10,11 +10,20 @@ import {
 import { serializeObject } from '../../lib/crypto';
 import { getFormattedDate, getInputDate } from '../../lib/date';
 import { StoreContext } from '../../lib/store';
-import { FormName } from '../../lib/types';
-import { CARD_INFO_QUERY_KEY, COVERS } from '../../lib/constants';
+import { FormName, GoogleAnalyticsEvents } from '../../lib/types';
+import {
+  CARD_INFO_QUERY_KEY,
+  COVERS,
+  PROJECT_TITLE,
+} from '../../lib/constants';
+import * as ga from '../../lib/google-analytics';
 import CardForm from '../cardForm';
 
 describe('<CardForm />', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should render note', () => {
     const store = {
       cover: getRandomCover(),
@@ -391,13 +400,37 @@ describe('<CardForm />', () => {
       expect(setIsModalOpenMock).toBeCalledTimes(1);
       expect(setIsModalOpenMock).toBeCalledWith(true);
     });
+
+    it('should track show modal', () => {
+      const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+      const store = {
+        cover: getRandomCover(),
+        cardDate: new Date(getFakeDate()),
+        setIsModalOpen: jest.fn(),
+      } as any;
+
+      render(
+        <StoreContext.Provider value={store}>
+          <CardForm />
+        </StoreContext.Provider>
+      );
+
+      const btnText = "Can't think of a message? Pick one from here!";
+      const btnEl = screen.queryByTitle(btnText) as HTMLButtonElement;
+
+      fireEvent.click(btnEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.MODAL_OPEN,
+        projectTitle: PROJECT_TITLE,
+        buttonText: btnText,
+      });
+    });
   });
 
   describe('form submit', () => {
-    afterEach(() => {
-      jest.restoreAllMocks();
-    });
-
     it('should show error if values are invalid on submit', () => {
       const invalidPayloads = [
         {
@@ -498,6 +531,41 @@ describe('<CardForm />', () => {
       expect(routerPushMock).toBeCalledWith({
         pathname: '/',
         query: { [CARD_INFO_QUERY_KEY]: id },
+      });
+    });
+
+    it('should track submit success', () => {
+      const trackEventSpy = jest.spyOn(ga, 'trackEvent');
+
+      jest.spyOn(router, 'useRouter').mockReturnValue({
+        push: jest.fn(),
+      } as any);
+
+      const store = {
+        cover: getRandomCover(),
+        cardDate: new Date(getFakeDate()),
+        cardTo: getFakeFirstName(),
+        cardFrom: getFakeFirstName(),
+        message: getFakeSentences(),
+        setIsCardOwner: jest.fn(),
+        setIsCardOpen: jest.fn(),
+      } as any;
+
+      render(
+        <StoreContext.Provider value={store}>
+          <CardForm />
+        </StoreContext.Provider>
+      );
+
+      const btnEl = screen.queryByText('Create') as HTMLButtonElement;
+
+      fireEvent.click(btnEl);
+
+      expect(trackEventSpy).toBeCalledTimes(1);
+      expect(trackEventSpy).toBeCalledWith({
+        event: GoogleAnalyticsEvents.CARD_CREATE,
+        projectTitle: PROJECT_TITLE,
+        cardCover: store.cover.name,
       });
     });
   });

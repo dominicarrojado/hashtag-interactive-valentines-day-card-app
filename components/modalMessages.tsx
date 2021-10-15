@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { parseMessage } from '../lib/message';
+import { trackEvent } from '../lib/google-analytics';
 import { StoreContext } from '../lib/store';
 import Modal from './modal';
-import { TEMPLATE_MESSAGES } from '../lib/constants';
+import { GoogleAnalyticsEvents } from '../lib/types';
+import { PROJECT_TITLE, TEMPLATE_MESSAGES } from '../lib/constants';
 import styles from './modalMessages.module.css';
 
 function ModalMessages() {
@@ -17,6 +19,12 @@ function ModalMessages() {
   const messageOnClick = (message: string) => {
     context.setMessage(message);
     closeModal();
+
+    trackEvent({
+      event: GoogleAnalyticsEvents.CARD_TEMPLATE_MESSAGE_CLICK,
+      projectTitle: PROJECT_TITLE,
+      buttonText: message,
+    });
   };
 
   return (

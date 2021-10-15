@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   FormEvent,
+  MouseEvent,
   useContext,
   useEffect,
   useRef,
@@ -12,14 +13,20 @@ import cn from 'classnames';
 import { getRefValue } from '../lib/hooks';
 import { getAssetUrl } from '../lib/assets';
 import { serializeObject } from '../lib/crypto';
+import { trackEvent } from '../lib/google-analytics';
 import { StoreContext } from '../lib/store';
 import DateText from './dateText';
 import CoverRadio from './coverRadio';
 import InputText from './inputText';
 import InputTextArea from './inputTextArea';
 import Button from './button';
-import { Cover, CoverName, FormName } from '../lib/types';
-import { CARD_INFO_QUERY_KEY, COVERS } from '../lib/constants';
+import {
+  Cover,
+  CoverName,
+  FormName,
+  GoogleAnalyticsEvents,
+} from '../lib/types';
+import { CARD_INFO_QUERY_KEY, COVERS, PROJECT_TITLE } from '../lib/constants';
 import styles from './cardForm.module.css';
 import bgColorStyles from '../styles/bgColor.module.css';
 
@@ -57,9 +64,15 @@ function CardForm() {
     setHasError(false);
     context.setMessage(e.target.value);
   };
-  const openModal = () => {
+  const openModal = (e: MouseEvent<HTMLButtonElement>) => {
     setHasError(false);
     context.setIsModalOpen(true);
+
+    trackEvent({
+      event: GoogleAnalyticsEvents.MODAL_OPEN,
+      projectTitle: PROJECT_TITLE,
+      buttonText: e.currentTarget.title,
+    });
   };
   const formOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,8 +88,9 @@ function CardForm() {
     context.setIsCardOwner(true);
     context.setIsCardOpen(true);
 
+    const coverName = context.cover.name;
     const id = serializeObject({
-      c: context.cover.name,
+      c: coverName,
       d: new Date().getTime(),
       t: cardTo,
       f: cardFrom,
@@ -86,6 +100,12 @@ function CardForm() {
     router.push({
       pathname: '/',
       query: { [CARD_INFO_QUERY_KEY]: id },
+    });
+
+    trackEvent({
+      event: GoogleAnalyticsEvents.CARD_CREATE,
+      projectTitle: PROJECT_TITLE,
+      cardCover: coverName,
     });
   };
 

@@ -1,5 +1,11 @@
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  MouseEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { getAssetUrl } from '../lib/assets';
 import { checkIsTouchScreen, copyTextToClipboard } from '../lib/dom';
 import { parseMessage } from '../lib/message';
@@ -8,13 +14,16 @@ import {
   getMainShareUrl,
   getTwitterShareUrl,
 } from '../lib/share';
+import { trackEvent } from '../lib/google-analytics';
 import { StoreContext } from '../lib/store';
 import Button from './button';
 import DateText from './dateText';
 import Tooltip from './tooltip';
+import { GoogleAnalyticsEvents, SocialName } from '../lib/types';
 import {
   CARD_INFO_PRE_MESSAGE,
   MAIN_TITLE,
+  PROJECT_TITLE,
   TEXT_COPIED_TIMEOUT,
 } from '../lib/constants';
 import styles from './cardInfo.module.css';
@@ -25,8 +34,32 @@ function CardInfo() {
   const context = useContext(StoreContext);
   const mainShareUrl = getMainShareUrl();
   const [isCopied, setIsCopied] = useState(false);
-  const createOnClick = () => router.push('/');
-  const copyOnClick = () => {
+  const createOnClick = () => {
+    router.push('/');
+
+    trackEvent({
+      event: GoogleAnalyticsEvents.CARD_RECREATE,
+      projectTitle: PROJECT_TITLE,
+      cardCover: context.cover.name,
+    });
+  };
+  const socialOnClick = ({ currentTarget }: MouseEvent<HTMLAnchorElement>) => {
+    trackEvent({
+      event: GoogleAnalyticsEvents.CARD_SHARE,
+      projectTitle: PROJECT_TITLE,
+      socialName: currentTarget.dataset.name as SocialName,
+      linkText: currentTarget.title,
+      cardCover: context.cover.name,
+    });
+  };
+  const copyOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+    trackEvent({
+      event: GoogleAnalyticsEvents.CARD_LINK_COPY,
+      projectTitle: PROJECT_TITLE,
+      buttonText: e.currentTarget.title,
+      cardCover: context.cover.name,
+    });
+
     if (checkIsTouchScreen() && typeof navigator.share === 'function') {
       return navigator.share({
         title: MAIN_TITLE,
@@ -92,7 +125,9 @@ function CardInfo() {
             target="_blank"
             rel="noopener noreferrer nofollow"
             className={styles.shareBtn}
-            aria-label="Share to Facebook"
+            title="Share to Facebook"
+            data-name={SocialName.FACEBOOK}
+            onClick={socialOnClick}
           >
             <img
               src={getAssetUrl('images/icon-facebook.png')}
@@ -105,7 +140,9 @@ function CardInfo() {
             target="_blank"
             rel="noopener noreferrer nofollow"
             className={styles.shareBtn}
-            aria-label="Share to Twitter"
+            title="Share to Twitter"
+            data-name={SocialName.TWITTER}
+            onClick={socialOnClick}
           >
             <img
               src={getAssetUrl('images/icon-twitter.png')}
@@ -117,7 +154,7 @@ function CardInfo() {
             type="button"
             className={styles.shareBtn}
             onClick={copyOnClick}
-            aria-label="Copy link"
+            title="Copy link"
           >
             <img
               src={getAssetUrl('images/icon-link.png')}
