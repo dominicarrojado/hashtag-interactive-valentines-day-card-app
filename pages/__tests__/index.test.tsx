@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import * as router from 'next/router';
 import { serializeObject } from '../../lib/crypto';
 import {
@@ -15,6 +15,8 @@ import * as CardCover from '../../components/cardCover';
 import * as CardInfo from '../../components/cardInfo';
 import Home from '../index.page';
 
+jest.useFakeTimers();
+
 describe('<Home />', () => {
   afterEach(() => {
     jest.restoreAllMocks();
@@ -30,6 +32,10 @@ describe('<Home />', () => {
     const cardInfoSpy = jest.spyOn(CardInfo, 'default');
 
     render(<Home />);
+
+    act(() => {
+      jest.advanceTimersByTime(100); // mount delay
+    });
 
     expect(seoTagsSpy).toBeCalled();
     expect(cardFormSpy).toBeCalled();
@@ -58,6 +64,10 @@ describe('<Home />', () => {
     const cardInfoSpy = jest.spyOn(CardInfo, 'default');
 
     render(<Home />);
+
+    act(() => {
+      jest.advanceTimersByTime(100); // mount delay
+    });
 
     expect(seoTagsSpy).toBeCalled();
     expect(cardCoverSpy).toBeCalled();

@@ -37,6 +37,7 @@ export function Home() {
       };
     }
   }, [queryKey]);
+  const [isMounted, setIsMounted] = useState(false);
   const [cover, setCover] = useState(() => cardInfo.cover);
   const [cardTo, setCardTo] = useState(() => cardInfo.cardTo);
   const [cardFrom, setCardFrom] = useState(() => cardInfo.cardFrom);
@@ -69,24 +70,32 @@ export function Home() {
     setCardFrom(cardInfo.cardFrom);
     setCardDate(cardInfo.cardDate);
     setMessage(cardInfo.message);
+
+    const timeout = setTimeout(() => setIsMounted(true), 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [cardInfo]);
 
   return (
     <StoreContext.Provider value={storeValues}>
       <SeoTags />
-      <Layout>
-        {!cardInfo.isValid ? (
-          <>
-            <CardForm />
-            <ModalMessages />
-          </>
-        ) : (
-          <>
-            <CardCover />
-            <CardInfo />
-          </>
-        )}
-      </Layout>
+      {isMounted && (
+        <Layout>
+          {cardInfo.isValid ? (
+            <>
+              <CardCover />
+              <CardInfo />
+            </>
+          ) : (
+            <>
+              <CardForm />
+              <ModalMessages />
+            </>
+          )}
+        </Layout>
+      )}
     </StoreContext.Provider>
   );
 }
