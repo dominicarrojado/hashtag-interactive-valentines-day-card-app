@@ -92,6 +92,8 @@ describe('<CardInfo />', () => {
         'href',
         getFacebookShareUrl(getMainShareUrl())
       );
+      expect(anchorEl).toHaveAttribute('target', '_blank');
+      expect(anchorEl).toHaveAttribute('rel', 'noopener noreferrer nofollow');
     });
 
     it('should render share to twitter anchor', () => {
@@ -102,6 +104,8 @@ describe('<CardInfo />', () => {
         'href',
         getTwitterShareUrl(getMainShareUrl())
       );
+      expect(anchorEl).toHaveAttribute('target', '_blank');
+      expect(anchorEl).toHaveAttribute('rel', 'noopener noreferrer nofollow');
     });
   });
 
