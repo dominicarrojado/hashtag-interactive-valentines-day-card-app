@@ -8,6 +8,7 @@ import {
   META_IMAGE,
   META_IMAGE_HEIGHT,
   META_IMAGE_WIDTH,
+  SITE_NAME,
 } from '../../lib/constants';
 import SeoTags from '../seoTags';
 
@@ -40,18 +41,22 @@ describe('<SeoTags />', () => {
 
   it('should render title tags', () => {
     const metaOgTitle = document.querySelector('meta[property="og:title"]');
-    const metaSiteName = document.querySelector(
-      'meta[property="og:site_name"]'
-    );
     const metaTwitterTitle = document.querySelector(
       'meta[name="twitter:title"]'
     );
     const titleEl = document.querySelector('title');
 
     expect(metaOgTitle).toHaveAttribute('content', MAIN_TITLE);
-    expect(metaSiteName).toHaveAttribute('content', MAIN_TITLE);
     expect(metaTwitterTitle).toHaveAttribute('content', MAIN_TITLE);
     expect(titleEl).toHaveTextContent(MAIN_TITLE);
+  });
+
+  it('should render site name tag', () => {
+    const metaSiteName = document.querySelector(
+      'meta[property="og:site_name"]'
+    );
+
+    expect(metaSiteName).toHaveAttribute('content', SITE_NAME);
   });
 
   it('should render description tags', () => {

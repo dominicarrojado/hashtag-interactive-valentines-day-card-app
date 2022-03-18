@@ -8,6 +8,7 @@ import {
   META_IMAGE,
   META_IMAGE_HEIGHT,
   META_IMAGE_WIDTH,
+  SITE_NAME,
 } from '../lib/constants';
 
 function SeoTags() {
@@ -26,7 +27,7 @@ function SeoTags() {
       <meta property="og:title" content={MAIN_TITLE} />
       <meta property="og:description" content={MAIN_DESC} />
       <meta property="og:url" content={MAIN_URL} />
-      <meta property="og:site_name" content={MAIN_TITLE} />
+      <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:image" content={META_IMAGE} />
       <meta property="og:image:secure_url" content={META_IMAGE} />
       <meta property="og:image:width" content={`${META_IMAGE_WIDTH}`} />

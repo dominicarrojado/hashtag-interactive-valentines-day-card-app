@@ -1,9 +1,10 @@
 import { getAssetUrl } from './assets';
 import { CoverName } from './types';
 
+export const SITE_NAME = 'Dominic Arrojado';
 export const PROJECT_TITLE = 'To My Valentine';
 export const MAIN_AUTHOR = 'Dominic Arrojado';
-export const MAIN_TITLE = `${PROJECT_TITLE} - ${MAIN_AUTHOR}`;
+export const MAIN_TITLE = `${PROJECT_TITLE} | ${SITE_NAME}`;
 export const MAIN_DESC =
   "Tug at your special someone's heartstrings by making a cute e-card just for them.";
 export const MAIN_ORIGIN = 'https://dominicarrojado.com';
