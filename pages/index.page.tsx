@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { getCardInfo } from '../lib/card';
 import { StoreContext } from '../lib/store';
-import SeoTags from '../components/seoTags';
 import Layout from '../components/layout';
 import CardForm from '../components/cardForm';
 import ModalMessages from '../components/modalMessages';
@@ -80,7 +79,6 @@ export function Home() {
 
   return (
     <StoreContext.Provider value={storeValues}>
-      <SeoTags />
       {isMounted && (
         <Layout>
           {cardInfo.isValid ? (

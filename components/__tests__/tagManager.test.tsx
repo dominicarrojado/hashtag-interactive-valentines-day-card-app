@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
-import SeoTags from '../seoTags';
+import TagManager from '../tagManager';
 
-describe('<SeoTags />', () => {
-  const renderComponent = () => render(<SeoTags />);
+describe('<TagManager />', () => {
+  const renderComponent = () => render(<TagManager />);
 
   it('should render without errors', () => {
     const { container } = renderComponent();

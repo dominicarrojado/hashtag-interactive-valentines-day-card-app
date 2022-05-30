@@ -13,6 +13,8 @@ export const MAIN_URL = `${MAIN_ORIGIN}${MAIN_PATH}`;
 export const META_IMAGE = `${MAIN_URL}images/screenshot.png`;
 export const META_IMAGE_WIDTH = 1052;
 export const META_IMAGE_HEIGHT = 550;
+export const META_IMAGE_ALT = 'To My Valentine';
+export const META_IMAGE_TYPE = 'image/png';
 
 export const COVER_NAMES = Object.values(CoverName);
 export const COVERS = [
