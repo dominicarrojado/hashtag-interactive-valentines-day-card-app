@@ -4,7 +4,7 @@ import {
   getRandomCover,
   setReadOnlyProperty,
 } from '../test-helpers';
-import { GoogleAnalyticsEvents, SocialName } from '../types';
+import { GoogleAnalyticsEvent, SocialName } from '../types';
 import { trackEvent } from '../google-analytics';
 
 describe('google-analytics utilities', () => {
@@ -28,7 +28,7 @@ describe('google-analytics utilities', () => {
       });
 
       const event = {
-        event: GoogleAnalyticsEvents.CARD_CREATE,
+        event: GoogleAnalyticsEvent.CARD_CREATE,
         projectTitle: getFakeSentence(),
         cardCover: getRandomCover().name,
       } as const;
@@ -44,7 +44,7 @@ describe('google-analytics utilities', () => {
       });
 
       const event = {
-        event: GoogleAnalyticsEvents.CARD_RECREATE,
+        event: GoogleAnalyticsEvent.CARD_RECREATE,
         projectTitle: getFakeSentence(),
         cardCover: getRandomCover().name,
       } as const;
@@ -61,7 +61,7 @@ describe('google-analytics utilities', () => {
 
       const currentDataLayer = [
         {
-          event: GoogleAnalyticsEvents.CARD_LINK_COPY,
+          event: GoogleAnalyticsEvent.CARD_LINK_COPY,
           projectTitle: getFakeSentence(),
           buttonText: getFakeSentence(),
           cardCover: getRandomCover().name,
@@ -71,7 +71,7 @@ describe('google-analytics utilities', () => {
       window.dataLayer = [...currentDataLayer];
 
       const event = {
-        event: GoogleAnalyticsEvents.CARD_SHARE,
+        event: GoogleAnalyticsEvent.CARD_SHARE,
         projectTitle: getFakeSentence(),
         socialName: SocialName.FACEBOOK,
         linkText: getFakeSentence(),

@@ -20,12 +20,7 @@ import CoverRadio from './coverRadio';
 import InputText from './inputText';
 import InputTextArea from './inputTextArea';
 import Button from './button';
-import {
-  Cover,
-  CoverName,
-  FormName,
-  GoogleAnalyticsEvents,
-} from '../lib/types';
+import { Cover, CoverName, FormName, GoogleAnalyticsEvent } from '../lib/types';
 import { CARD_INFO_QUERY_KEY, COVERS, PROJECT_TITLE } from '../lib/constants';
 import styles from './cardForm.module.css';
 import bgColorStyles from '../styles/bgColor.module.css';
@@ -69,7 +64,7 @@ function CardForm() {
     context.setIsModalOpen(true);
 
     trackEvent({
-      event: GoogleAnalyticsEvents.MODAL_OPEN,
+      event: GoogleAnalyticsEvent.MODAL_OPEN,
       projectTitle: PROJECT_TITLE,
       buttonText: e.currentTarget.title,
     });
@@ -103,7 +98,7 @@ function CardForm() {
     });
 
     trackEvent({
-      event: GoogleAnalyticsEvents.CARD_CREATE,
+      event: GoogleAnalyticsEvent.CARD_CREATE,
       projectTitle: PROJECT_TITLE,
       cardCover: coverName,
     });

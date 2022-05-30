@@ -3,7 +3,7 @@ import { parseMessage } from '../lib/message';
 import { trackEvent } from '../lib/google-analytics';
 import { StoreContext } from '../lib/store';
 import Modal from './modal';
-import { GoogleAnalyticsEvents } from '../lib/types';
+import { GoogleAnalyticsEvent } from '../lib/types';
 import { PROJECT_TITLE, TEMPLATE_MESSAGES } from '../lib/constants';
 import styles from './modalMessages.module.css';
 
@@ -21,7 +21,7 @@ function ModalMessages() {
     closeModal();
 
     trackEvent({
-      event: GoogleAnalyticsEvents.CARD_TEMPLATE_MESSAGE_CLICK,
+      event: GoogleAnalyticsEvent.CARD_TEMPLATE_MESSAGE_CLICK,
       projectTitle: PROJECT_TITLE,
       buttonText: message,
     });

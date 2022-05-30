@@ -15,7 +15,7 @@ import {
 } from '../../lib/share';
 import { getFormattedDate, getInputDate } from '../../lib/date';
 import { StoreContext } from '../../lib/store';
-import { GoogleAnalyticsEvents, SocialName } from '../../lib/types';
+import { GoogleAnalyticsEvent, SocialName } from '../../lib/types';
 import {
   CARD_INFO_PRE_MESSAGE,
   MAIN_TITLE,
@@ -109,7 +109,7 @@ describe('<CardInfo />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.CARD_SHARE,
+        event: GoogleAnalyticsEvent.CARD_SHARE,
         projectTitle: PROJECT_TITLE,
         socialName: SocialName.FACEBOOK,
         linkText: anchorText,
@@ -139,7 +139,7 @@ describe('<CardInfo />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.CARD_SHARE,
+        event: GoogleAnalyticsEvent.CARD_SHARE,
         projectTitle: PROJECT_TITLE,
         socialName: SocialName.TWITTER,
         linkText: anchorText,
@@ -217,7 +217,7 @@ describe('<CardInfo />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.CARD_RECREATE,
+        event: GoogleAnalyticsEvent.CARD_RECREATE,
         projectTitle: PROJECT_TITLE,
         cardCover: store.cover.name,
       });
@@ -345,7 +345,7 @@ describe('<CardInfo />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.CARD_LINK_COPY,
+        event: GoogleAnalyticsEvent.CARD_LINK_COPY,
         projectTitle: PROJECT_TITLE,
         buttonText: btnText,
         cardCover: store.cover.name,

@@ -10,7 +10,7 @@ import {
 import { serializeObject } from '../../lib/crypto';
 import { getFormattedDate, getInputDate } from '../../lib/date';
 import { StoreContext } from '../../lib/store';
-import { FormName, GoogleAnalyticsEvents } from '../../lib/types';
+import { FormName, GoogleAnalyticsEvent } from '../../lib/types';
 import {
   CARD_INFO_QUERY_KEY,
   COVERS,
@@ -423,7 +423,7 @@ describe('<CardForm />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.MODAL_OPEN,
+        event: GoogleAnalyticsEvent.MODAL_OPEN,
         projectTitle: PROJECT_TITLE,
         buttonText: btnText,
       });
@@ -563,7 +563,7 @@ describe('<CardForm />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.CARD_CREATE,
+        event: GoogleAnalyticsEvent.CARD_CREATE,
         projectTitle: PROJECT_TITLE,
         cardCover: store.cover.name,
       });

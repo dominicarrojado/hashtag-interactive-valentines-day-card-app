@@ -1,5 +1,5 @@
 import { checkIsLocalhost } from './location';
-import { CoverName, GoogleAnalyticsEvents, SocialName } from './types';
+import { CoverName, GoogleAnalyticsEvent, SocialName } from './types';
 
 declare global {
   interface Window {
@@ -8,19 +8,19 @@ declare global {
 }
 
 type EventCardCreate = {
-  event: GoogleAnalyticsEvents.CARD_CREATE;
+  event: GoogleAnalyticsEvent.CARD_CREATE;
   projectTitle: string;
   cardCover: CoverName;
 };
 
 type EventCardRereate = {
-  event: GoogleAnalyticsEvents.CARD_RECREATE;
+  event: GoogleAnalyticsEvent.CARD_RECREATE;
   projectTitle: string;
   cardCover: CoverName;
 };
 
 type EventCardShare = {
-  event: GoogleAnalyticsEvents.CARD_SHARE;
+  event: GoogleAnalyticsEvent.CARD_SHARE;
   projectTitle: string;
   socialName: SocialName;
   linkText: string;
@@ -28,20 +28,20 @@ type EventCardShare = {
 };
 
 type EventCardLinkCopy = {
-  event: GoogleAnalyticsEvents.CARD_LINK_COPY;
+  event: GoogleAnalyticsEvent.CARD_LINK_COPY;
   projectTitle: string;
   buttonText: string;
   cardCover: CoverName;
 };
 
 type EventCardTemplateMessageClick = {
-  event: GoogleAnalyticsEvents.CARD_TEMPLATE_MESSAGE_CLICK;
+  event: GoogleAnalyticsEvent.CARD_TEMPLATE_MESSAGE_CLICK;
   projectTitle: string;
   buttonText: string;
 };
 
 type EventModalOpen = {
-  event: GoogleAnalyticsEvents.MODAL_OPEN;
+  event: GoogleAnalyticsEvent.MODAL_OPEN;
   projectTitle: string;
   buttonText: string;
 };

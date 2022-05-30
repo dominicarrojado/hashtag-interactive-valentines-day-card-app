@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { getFakeBoolean, queryByTextIgnoreHTML } from '../../lib/test-helpers';
 import { StoreContext } from '../../lib/store';
-import { GoogleAnalyticsEvents } from '../../lib/types';
+import { GoogleAnalyticsEvent } from '../../lib/types';
 import { PROJECT_TITLE, TEMPLATE_MESSAGES } from '../../lib/constants';
 import * as message from '../../lib/message';
 import * as ga from '../../lib/google-analytics';
@@ -115,7 +115,7 @@ describe('<ModalMessages />', () => {
 
       expect(trackEventSpy).toBeCalledTimes(1);
       expect(trackEventSpy).toBeCalledWith({
-        event: GoogleAnalyticsEvents.CARD_TEMPLATE_MESSAGE_CLICK,
+        event: GoogleAnalyticsEvent.CARD_TEMPLATE_MESSAGE_CLICK,
         projectTitle: PROJECT_TITLE,
         buttonText: message,
       });

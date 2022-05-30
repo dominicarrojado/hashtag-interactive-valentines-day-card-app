@@ -19,7 +19,7 @@ import { StoreContext } from '../lib/store';
 import Button from './button';
 import DateText from './dateText';
 import Tooltip from './tooltip';
-import { GoogleAnalyticsEvents, SocialName } from '../lib/types';
+import { GoogleAnalyticsEvent, SocialName } from '../lib/types';
 import {
   CARD_INFO_PRE_MESSAGE,
   MAIN_TITLE,
@@ -38,14 +38,14 @@ function CardInfo() {
     router.push('/');
 
     trackEvent({
-      event: GoogleAnalyticsEvents.CARD_RECREATE,
+      event: GoogleAnalyticsEvent.CARD_RECREATE,
       projectTitle: PROJECT_TITLE,
       cardCover: context.cover.name,
     });
   };
   const socialOnClick = ({ currentTarget }: MouseEvent<HTMLAnchorElement>) => {
     trackEvent({
-      event: GoogleAnalyticsEvents.CARD_SHARE,
+      event: GoogleAnalyticsEvent.CARD_SHARE,
       projectTitle: PROJECT_TITLE,
       socialName: currentTarget.dataset.name as SocialName,
       linkText: currentTarget.title,
@@ -54,7 +54,7 @@ function CardInfo() {
   };
   const copyOnClick = (e: MouseEvent<HTMLButtonElement>) => {
     trackEvent({
-      event: GoogleAnalyticsEvents.CARD_LINK_COPY,
+      event: GoogleAnalyticsEvent.CARD_LINK_COPY,
       projectTitle: PROJECT_TITLE,
       buttonText: e.currentTarget.title,
       cardCover: context.cover.name,

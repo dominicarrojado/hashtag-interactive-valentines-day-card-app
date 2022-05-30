@@ -18,7 +18,7 @@ export enum SocialName {
   TWITTER = 'twitter',
 }
 
-export enum GoogleAnalyticsEvents {
+export enum GoogleAnalyticsEvent {
   CARD_CREATE = 'card_create',
   CARD_RECREATE = 'card_recreate',
   CARD_SHARE = 'card_share',
