@@ -50,3 +50,8 @@ yarn export
 ```
 
 2. The `out` directory can be served by any static hosting service or CDN.
+
+## VSCode Extensions
+
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
