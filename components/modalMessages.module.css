@@ -14,6 +14,7 @@
   border: 2px solid transparent;
   background-color: var(--gray-300);
   padding: 20px;
+  color: var(--black);
   font-size: 16px;
   text-align: left;
   cursor: pointer;
